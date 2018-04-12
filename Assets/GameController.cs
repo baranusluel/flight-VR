@@ -7,7 +7,7 @@ using Wrld.Space;
 using UnityEngine.UI;
 
 
-public class CameraController : MonoBehaviour {
+public class GameController : MonoBehaviour {
     CameraApi camapi;
     Camera cam;
     const float distPerFrame = 75;
@@ -20,10 +20,9 @@ public class CameraController : MonoBehaviour {
     public TextMesh multiplierText;
     const string gameOverString = "Game Over!";
     const string respawningString = "Respawning in ";
-    const string pointsString = "Points: ";
-    const string multiplierString = "x Multiplier";
     float startTime = 0;
     Vector3 startPos = new Vector3(100, 500, -1300);
+    float points = 0;
 
     void Start() {
         camapi = Api.Instance.CameraApi;
@@ -39,6 +38,8 @@ public class CameraController : MonoBehaviour {
         respawningText.text = "";
         startTime = Time.time;
         timerText.text = "Timer: 0.00";
+        pointsText.text = "Points: 0";
+        multiplierText.text = "1x Multiplier";
         transform.position = startPos;
         gameIsOver = false;
         StartCoroutine("waitLoading");
@@ -47,7 +48,15 @@ public class CameraController : MonoBehaviour {
 	void Update () {
         if (gameIsOver)
             return;
-        timerText.text = "Timer: " + (Time.time - startTime).ToString("0.00");
+        float deltTime = (Time.time - startTime);
+        timerText.text = "Time: " + deltTime.ToString("0.00");
+
+        float multiplier = Mathf.Round(10 * Mathf.Exp(-1f * Mathf.Max(0, transform.position.y - 300) / 75f));
+        multiplierText.text = multiplier + "x Multiplier";
+
+        points += deltTime * multiplier / 100;
+        pointsText.text = "Points: " + Mathf.Round(points);
+
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
@@ -64,6 +73,7 @@ public class CameraController : MonoBehaviour {
         if (angle > 180)
             angle -= 360;
         transform.Rotate(new Vector3(0, -angle / 20, 0));
+        // TODO: Is this necessary? Test performance
         Api.Instance.StreamResourcesForCamera(cam);
     }
 
@@ -88,19 +98,20 @@ public class CameraController : MonoBehaviour {
         gameOverText.text = gameOverString;
         respawningText.text = respawningString;
         StartCoroutine("respawnCountdown");
-        yield return new WaitForSeconds(3);
-        speed = 0;
-        spawn();
-        StartCoroutine("rampSpeed");
+        yield return null;
     }
 
     IEnumerator respawnCountdown()
     {
-        respawningText.text += "3...";
-        yield return new WaitForSeconds(1);
-        respawningText.text = respawningString + "2...";
-        yield return new WaitForSeconds(1);
-        respawningText.text = respawningString + "1...";
+        for (int i = 5; i > 0; i--)
+        {
+            respawningText.text = respawningString + i + "...";
+            yield return new WaitForSeconds(1);
+        }
+        speed = 0;
+        points = 0;
+        spawn();
+        StartCoroutine("rampSpeed");
     }
 
     void OnTriggerEnter()
