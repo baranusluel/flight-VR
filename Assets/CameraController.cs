@@ -13,12 +13,13 @@ public class CameraController : MonoBehaviour {
     const float distPerFrame = 75;
     float speed = 0;
     bool gameIsOver = false;
-    //public TextMesh gameOverText;
-    //public TextMesh respawningText;
-    //public TextMesh timerText;
+    public TextMesh gameOverText;
+    public TextMesh respawningText;
+    public TextMesh timerText;
     const string gameOverString = "Game Over!";
     const string respawningString = "Respawning in ";
     float startTime = 0;
+    Vector3 startPos = new Vector3(100, 500, -1300);
 
     void Start() {
         camapi = Api.Instance.CameraApi;
@@ -30,11 +31,11 @@ public class CameraController : MonoBehaviour {
 
     void spawn()
     {
-        //gameOverText.text = "";
-        //respawningText.text = "";
-        //startTime = Time.time;
-        //timerText.text = "Timer: 0.00";
-        transform.position = new Vector3(100, 500, -1300);
+        gameOverText.text = "";
+        respawningText.text = "";
+        startTime = Time.time;
+        timerText.text = "Timer: 0.00";
+        transform.position = startPos;
         gameIsOver = false;
         StartCoroutine("waitLoading");
     }
@@ -42,7 +43,7 @@ public class CameraController : MonoBehaviour {
 	void Update () {
         if (gameIsOver)
             return;
-        //timerText.text = "Timer: " + (Time.time - startTime).ToString("0.00");
+        timerText.text = "Timer: " + (Time.time - startTime).ToString("0.00");
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
@@ -80,8 +81,8 @@ public class CameraController : MonoBehaviour {
     IEnumerator gameOver()
     {
         gameIsOver = true;
-        //gameOverText.text = gameOverString;
-        //respawningText.text = respawningString;
+        gameOverText.text = gameOverString;
+        respawningText.text = respawningString;
         StartCoroutine("respawnCountdown");
         yield return new WaitForSeconds(3);
         speed = 0;
@@ -91,11 +92,11 @@ public class CameraController : MonoBehaviour {
 
     IEnumerator respawnCountdown()
     {
-        //respawningText.text += "3...";
+        respawningText.text += "3...";
         yield return new WaitForSeconds(1);
-        //respawningText.text = respawningString + "2...";
+        respawningText.text = respawningString + "2...";
         yield return new WaitForSeconds(1);
-        //respawningText.text = respawningString + "1...";
+        respawningText.text = respawningString + "1...";
     }
 
     void OnTriggerEnter()
