@@ -16,8 +16,12 @@ public class CameraController : MonoBehaviour {
     public TextMesh gameOverText;
     public TextMesh respawningText;
     public TextMesh timerText;
+    public TextMesh pointsText;
+    public TextMesh multiplierText;
     const string gameOverString = "Game Over!";
     const string respawningString = "Respawning in ";
+    const string pointsString = "Points: ";
+    const string multiplierString = "x Multiplier";
     float startTime = 0;
     Vector3 startPos = new Vector3(100, 500, -1300);
 
