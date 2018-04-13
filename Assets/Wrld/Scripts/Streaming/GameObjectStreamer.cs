@@ -72,7 +72,14 @@ namespace Wrld.Streaming
                 // SetActive is now recommended in place of SetActiveRecursively, but they do subtly different things.
                 // The correct fix for this would be to write our own version of SetActiveRecursively, but for now
                 // we're a bit too close to a release for that to be safe.
-                gameObject.SetActiveRecursively(visible);
+                try
+                {
+                    gameObject.SetActiveRecursively(visible);
+                    //gameObject.GetComponentInChildren<MeshCollider>().convex = true;
+                } catch
+                {
+                    Debug.LogWarning("Mesh cleaning error");
+                }
                 #pragma warning restore 618
             }
         }

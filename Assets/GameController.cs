@@ -27,6 +27,13 @@ public class GameController : MonoBehaviour {
     void Start() {
         camapi = Api.Instance.CameraApi;
         cam = transform.GetComponentInChildren<Camera>();
+        float latitude = PlayerPrefs.GetFloat("latitude");
+        float longitude = PlayerPrefs.GetFloat("longitude");
+        Debug.Log(latitude);
+        Debug.Log(longitude);
+        GameObject.Find("WrldMap").GetComponentInChildren<WrldMap>().m_latitudeDegrees = latitude;
+        GameObject.Find("WrldMap").GetComponentInChildren<WrldMap>().m_longitudeDegrees = longitude;
+        Api.Instance.SetOriginPoint(LatLongAltitude.FromDegrees(latitude, longitude, 500));
         cam.farClipPlane = cam.farClipPlane * 2/5;
         Input.simulateMouseWithTouches = false;
         spawn();
@@ -48,6 +55,9 @@ public class GameController : MonoBehaviour {
 	void Update () {
         if (gameIsOver)
             return;
+        if (cam == null || cam.transform == null)
+            return;
+
         timerText.text = "Time: " + (Time.time - startTime).ToString("0.00");
 
         float multiplier = Mathf.Round(10 * Mathf.Exp(-1f * Mathf.Max(0, transform.position.y - 300) / 75f));
