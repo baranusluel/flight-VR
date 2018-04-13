@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour {
         points += Time.deltaTime * multiplier;
         pointsText.text = "Points: " + Mathf.Round(points);
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        if (Input.touchCount > 0)
         {
             //Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
             //transform.Rotate(new Vector3(-touchDeltaPosition.y, touchDeltaPosition.x, 0) / 2);
