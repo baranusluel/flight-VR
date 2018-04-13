@@ -29,8 +29,6 @@ public class GameController : MonoBehaviour {
         cam = transform.GetComponentInChildren<Camera>();
         float latitude = PlayerPrefs.GetFloat("latitude");
         float longitude = PlayerPrefs.GetFloat("longitude");
-        Debug.Log(latitude);
-        Debug.Log(longitude);
         GameObject.Find("WrldMap").GetComponentInChildren<WrldMap>().m_latitudeDegrees = latitude;
         GameObject.Find("WrldMap").GetComponentInChildren<WrldMap>().m_longitudeDegrees = longitude;
         Api.Instance.SetOriginPoint(LatLongAltitude.FromDegrees(latitude, longitude, 500));
@@ -68,8 +66,9 @@ public class GameController : MonoBehaviour {
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
-            Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-            transform.Rotate(new Vector3(-touchDeltaPosition.y, touchDeltaPosition.x, 0) / 2);
+            //Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+            //transform.Rotate(new Vector3(-touchDeltaPosition.y, touchDeltaPosition.x, 0) / 2);
+            Application.LoadLevel("MenuScene");
         }
         else if (Input.GetMouseButton(0))
         {

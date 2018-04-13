@@ -45,10 +45,6 @@ public class MenuController : MonoBehaviour {
             {
                 countdownCoroutine = countdown();
                 StartCoroutine(countdownCoroutine);
-                if (hit.rigidbody == null)
-                {
-                    Debug.Log("rigid body null");
-                }
                 switch (hit.rigidbody.gameObject.name)
                 {
                     case "New York":
