@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour {
     const string gameOverString = "Game Over!";
     const string respawningString = "Respawning in ";
     float startTime = 0;
-    Vector3 startPos = new Vector3(100, 500, -1300);
+    Vector3 startPos = new Vector3(-100, 400, -700);
     float points = 0;
 
     void Start() {
