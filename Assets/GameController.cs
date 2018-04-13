@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour {
     void Start() {
         camapi = Api.Instance.CameraApi;
         cam = transform.GetComponentInChildren<Camera>();
-        cam.farClipPlane = cam.farClipPlane / 2;
+        cam.farClipPlane = cam.farClipPlane * 2/5;
         Input.simulateMouseWithTouches = false;
         spawn();
     }
