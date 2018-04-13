@@ -48,13 +48,12 @@ public class GameController : MonoBehaviour {
 	void Update () {
         if (gameIsOver)
             return;
-        float deltTime = (Time.time - startTime);
-        timerText.text = "Time: " + deltTime.ToString("0.00");
+        timerText.text = "Time: " + (Time.time - startTime).ToString("0.00");
 
         float multiplier = Mathf.Round(10 * Mathf.Exp(-1f * Mathf.Max(0, transform.position.y - 300) / 75f));
         multiplierText.text = multiplier + "x Multiplier";
 
-        points += deltTime * multiplier / 100;
+        points += Time.deltaTime * multiplier;
         pointsText.text = "Points: " + Mathf.Round(points);
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
