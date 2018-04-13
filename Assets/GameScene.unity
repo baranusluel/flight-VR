@@ -178,11 +178,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4647937624967488, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -800
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 4647937624967488, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 800
+      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 4647937624967488, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -238,7 +238,12 @@ Prefab:
     - target: {fileID: 102249686829881170, guid: 7cb0008825507bd479759a2283139cc1,
         type: 2}
       propertyPath: m_Anchor
-      value: 7
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 102249686829881170, guid: 7cb0008825507bd479759a2283139cc1,
+        type: 2}
+      propertyPath: m_FontSize
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
@@ -425,7 +430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4647937624967488, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 800
+      value: 675
       objectReference: {fileID: 0}
     - target: {fileID: 4647937624967488, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -734,11 +739,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4647937624967488, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 850
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 4647937624967488, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 800
+      value: 550
       objectReference: {fileID: 0}
     - target: {fileID: 4647937624967488, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -806,6 +811,11 @@ Prefab:
         type: 2}
       propertyPath: m_Anchor
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 102249686829881170, guid: 7cb0008825507bd479759a2283139cc1,
+        type: 2}
+      propertyPath: m_FontSize
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cb0008825507bd479759a2283139cc1, type: 2}
